@@ -22,4 +22,12 @@ public class BookingLocationService {
     public List<BookingLocation> getAllTables() {
         return bookingLocationRepository.findByActivity(Activity.DINING);
     }
+
+    public List<BookingLocation> getAllBowlingLanes() {
+        return bookingLocationRepository.findByActivity(Activity.BOWLING);
+    }
+
+    public List<BookingLocation> getAllAirHockeyTables() {
+        return bookingLocationRepository.findByActivity(Activity.AIRHOCKEY);
+    }
 }

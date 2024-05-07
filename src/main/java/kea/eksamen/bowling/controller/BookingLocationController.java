@@ -26,4 +26,14 @@ public class BookingLocationController {
         return bookingLocationService.getAllTables();
     }
 
+    @RequestMapping("/lanes")
+    public List<BookingLocation> getAllBowlingLanes() {
+        return bookingLocationService.getAllBowlingLanes();
+    }
+
+    @RequestMapping("/airhockey")
+    public List<BookingLocation> getAllAirHockeyTables() {
+        return bookingLocationService.getAllAirHockeyTables();
+    }
+
 }
