@@ -21,4 +21,9 @@ public class BookingLocationController {
         return bookingLocationService.getAllBookingLocations();
     }
 
+    @RequestMapping("/tables")
+    public List<BookingLocation> getAllTables() {
+        return bookingLocationService.getAllTables();
+    }
+
 }

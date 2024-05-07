@@ -1,5 +1,6 @@
 package kea.eksamen.bowling.service;
 
+import kea.eksamen.bowling.entity.Activity;
 import kea.eksamen.bowling.entity.BookingLocation;
 import kea.eksamen.bowling.repositories.BookingLocationRepository;
 import org.springframework.stereotype.Service;
@@ -16,5 +17,9 @@ public class BookingLocationService {
 
     public List<BookingLocation> getAllBookingLocations() {
         return bookingLocationRepository.findAll();
+    }
+
+    public List<BookingLocation> getAllTables() {
+        return bookingLocationRepository.findByActivity(Activity.DINING);
     }
 }
