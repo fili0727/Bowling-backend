@@ -18,11 +18,9 @@ public class BookingLocation {
     private Activity activity;
 
     private String name;
-    private boolean isBooked;
 
     public BookingLocation(Activity activity, String name) {
         this.activity = activity;
         this.name = name;
-        this.isBooked = false;
     }
 }

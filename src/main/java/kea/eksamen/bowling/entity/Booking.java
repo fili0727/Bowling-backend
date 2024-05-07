@@ -26,6 +26,5 @@ public class Booking {
         this.bookingLocation = bookingLocation;
         this.amountOfPeople = amountOfPeople;
         this.bookingTime = bookingTime;
-        bookingLocation.setBooked(true);
     }
 }
