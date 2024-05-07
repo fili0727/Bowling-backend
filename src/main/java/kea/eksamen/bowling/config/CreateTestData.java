@@ -29,17 +29,17 @@ public class CreateTestData implements CommandLineRunner {
     }
 
     private void createBookingLocations() {
-        BookingLocation course1 = new BookingLocation(Activity.BOWLING,"Lane 1");
-        BookingLocation course2 = new BookingLocation(Activity.BOWLING,"Lane 2");
-        BookingLocation course3 = new BookingLocation(Activity.BOWLING,"Lane 3");
+        BookingLocation course1 = new BookingLocation(Activity.BOWLING,"Lane 1", 4);
+        BookingLocation course2 = new BookingLocation(Activity.BOWLING,"Lane 2", 2);
+        BookingLocation course3 = new BookingLocation(Activity.BOWLING,"Lane 3", 6);
 
-        BookingLocation station1 = new BookingLocation(Activity.AIRHOCKEY,"Station 1");
-        BookingLocation station2 = new BookingLocation(Activity.AIRHOCKEY,"Station 2");
-        BookingLocation station3 = new BookingLocation(Activity.AIRHOCKEY,"Station 3");
+        BookingLocation station1 = new BookingLocation(Activity.AIRHOCKEY,"Station 1", 4);
+        BookingLocation station2 = new BookingLocation(Activity.AIRHOCKEY,"Station 2", 2);
+        BookingLocation station3 = new BookingLocation(Activity.AIRHOCKEY,"Station 3", 6);
 
-        BookingLocation table1 = new BookingLocation(Activity.DINING,"Table 1");
-        BookingLocation table2 = new BookingLocation(Activity.DINING,"Table 2");
-        BookingLocation table3 = new BookingLocation(Activity.DINING,"Table 3");
+        BookingLocation table1 = new BookingLocation(Activity.DINING,"Table 1", 4);
+        BookingLocation table2 = new BookingLocation(Activity.DINING,"Table 2", 2);
+        BookingLocation table3 = new BookingLocation(Activity.DINING,"Table 3", 6);
 
         List<BookingLocation> bookingLocations = List.of(course1, course2, course3, station1, station2, station3, table1, table2, table3);
         bookingLocationRepository.saveAll(bookingLocations);

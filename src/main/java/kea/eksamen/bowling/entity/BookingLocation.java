@@ -19,8 +19,11 @@ public class BookingLocation {
 
     private String name;
 
-    public BookingLocation(Activity activity, String name) {
+    private Integer capacity;
+
+    public BookingLocation(Activity activity, String name, Integer capacity) {
         this.activity = activity;
         this.name = name;
+        this.capacity = capacity;
     }
 }
