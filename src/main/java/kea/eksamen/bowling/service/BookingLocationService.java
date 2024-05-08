@@ -1,6 +1,6 @@
 package kea.eksamen.bowling.service;
 
-import kea.eksamen.bowling.entity.Activity;
+import kea.eksamen.bowling.entity.ActivityType;
 import kea.eksamen.bowling.entity.BookingLocation;
 import kea.eksamen.bowling.repositories.BookingLocationRepository;
 import org.springframework.stereotype.Service;
@@ -20,14 +20,15 @@ public class BookingLocationService {
     }
 
     public List<BookingLocation> getAllTables() {
-        return bookingLocationRepository.findByActivity(Activity.DINING);
+        System.out.println(bookingLocationRepository.findByActivityType(ActivityType.DINING));
+        return bookingLocationRepository.findByActivityType(ActivityType.DINING);
     }
 
     public List<BookingLocation> getAllBowlingLanes() {
-        return bookingLocationRepository.findByActivity(Activity.BOWLING);
+        return bookingLocationRepository.findByActivityType(ActivityType.BOWLING);
     }
 
     public List<BookingLocation> getAllAirHockeyTables() {
-        return bookingLocationRepository.findByActivity(Activity.AIRHOCKEY);
+        return bookingLocationRepository.findByActivityType(ActivityType.AIRHOCKEY);
     }
 }
