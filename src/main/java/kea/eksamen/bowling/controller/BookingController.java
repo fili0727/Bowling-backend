@@ -20,4 +20,19 @@ public class BookingController {
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
     }
+
+    @RequestMapping("/bowling")
+    public List<Booking> getBowlingBookings() {
+        return bookingService.getBowlingBookings();
+    }
+
+    @RequestMapping("/airhockey")
+    public List<Booking> getAirHockeyBookings() {
+        return bookingService.getAirHockeyBookings();
+    }
+
+    @RequestMapping("/dining")
+    public List<Booking> getDiningBookings() {
+        return bookingService.getDiningBookings();
+    }
 }
