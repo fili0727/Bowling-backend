@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -41,7 +42,7 @@ public class BookingController {
     }
 
     @RequestMapping("/activityAndDate")
-    public List<Booking> getBookingsByActivityAndDate(@RequestParam ActivityType activityType, @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime date) {
+    public List<Booking> getBookingsByActivityAndDate(@RequestParam ActivityType activityType, @RequestParam @DateTimeFormat(pattern = "MM/dd/yyyy", iso = DateTimeFormat.ISO.DATE) LocalDate date) {
         return bookingService.getBookingsByActivityAndDate(activityType, date);
     }
 }

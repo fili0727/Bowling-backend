@@ -5,6 +5,7 @@ import kea.eksamen.bowling.entity.Booking;
 import kea.eksamen.bowling.repositories.BookingRepository;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -41,11 +42,11 @@ public class BookingService {
         return all;
     }
 
-    public List<Booking> getBookingsByActivityAndDate(ActivityType activityType, LocalDateTime date) {
+    public List<Booking> getBookingsByActivityAndDate(ActivityType activityType, LocalDate date) {
         List<Booking> all = bookingRepository.findAll();
 
-        List<Booking> test = all.stream().filter(booking -> booking.getBookingLocation().getActivityType() == activityType &&
-                booking.getBookingTime().toLocalDate().isEqual(date.toLocalDate())).toList();
+        all.removeIf(booking -> booking.getBookingLocation().getActivityType() != activityType);
+        List<Booking> test = all.stream().filter(booking -> booking.getBookingTime().toLocalDate().equals(date)).toList();
 
 
         return test;
