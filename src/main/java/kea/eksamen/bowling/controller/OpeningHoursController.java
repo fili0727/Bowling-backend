@@ -35,4 +35,6 @@ public class OpeningHoursController {
     public List<OpeningHours> getOpeningHoursAirHockey() {
         return openingHoursService.getOpeningHoursAirHockey();
     }
+
+
 }
