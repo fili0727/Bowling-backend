@@ -1,6 +1,7 @@
 package kea.eksamen.bowling.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,16 +15,16 @@ public class BookingLocation {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @Enumerated(EnumType.STRING)
-    private Activity activity;
-
     private String name;
 
     private Integer capacity;
 
-    public BookingLocation(Activity activity, String name, Integer capacity) {
-        this.activity = activity;
+    @Enumerated(EnumType.STRING)
+    private ActivityType activityType;
+
+    public BookingLocation(ActivityType activityType, String name, Integer capacity) {
         this.name = name;
         this.capacity = capacity;
+        this.activityType = activityType;
     }
 }

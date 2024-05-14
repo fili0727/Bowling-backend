@@ -1,6 +1,6 @@
 package kea.eksamen.bowling.entity;
 
-public enum Activity {
+public enum ActivityType {
     BOWLING,
     AIRHOCKEY,
     DINING
