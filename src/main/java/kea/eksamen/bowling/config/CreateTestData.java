@@ -1,6 +1,6 @@
 package kea.eksamen.bowling.config;
 
-import kea.eksamen.bowling.entity.Activity;
+
 import kea.eksamen.bowling.entity.Booking;
 import kea.eksamen.bowling.entity.BookingLocation;
 import kea.eksamen.bowling.entity.Product;
@@ -27,8 +27,7 @@ public class CreateTestData implements CommandLineRunner {
     private final OpeningHoursRepository openingHoursRepository;
 
     public CreateTestData(BookingRepository bookingRepository, BookingLocationRepository bookingLocationRepository,
-                          OpeningHoursRepository openingHoursRepository) {
-    public CreateTestData(BookingRepository bookingRepository, BookingLocationRepository bookingLocationRepository, ProductRepository productRepository) {
+                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository) {
         this.bookingRepository = bookingRepository;
         this.bookingLocationRepository = bookingLocationRepository;
         this.openingHoursRepository = openingHoursRepository;
