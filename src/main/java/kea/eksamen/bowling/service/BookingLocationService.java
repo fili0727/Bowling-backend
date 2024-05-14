@@ -6,6 +6,7 @@ import kea.eksamen.bowling.repositories.BookingLocationRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class BookingLocationService {
@@ -13,6 +14,10 @@ public class BookingLocationService {
 
     public BookingLocationService(BookingLocationRepository bookingLocationRepository) {
         this.bookingLocationRepository = bookingLocationRepository;
+    }
+
+    public Optional<BookingLocation> getBookingLocationById(int id) {
+        return bookingLocationRepository.findById(id);
     }
 
     public List<BookingLocation> getAllBookingLocations() {
