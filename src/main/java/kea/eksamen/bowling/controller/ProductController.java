@@ -1,9 +1,9 @@
 package kea.eksamen.bowling.controller;
 
+import kea.eksamen.bowling.dto.ProductPriceDTO;
 import kea.eksamen.bowling.entity.Product;
 import kea.eksamen.bowling.service.ProductService;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -19,6 +19,22 @@ public class ProductController {
     @RequestMapping
     public List<Product> getAllProducts() {
         return productService.getAllProducts();
+    }
+
+
+    @PostMapping
+    public Product addProduct(@RequestBody Product product) {
+        return productService.addProduct(product);
+    }
+
+    @PutMapping("/{id}")
+    public Product updateProductPrice(@PathVariable int id, @RequestBody ProductPriceDTO product) {
+        return productService.updateProductPrice(id, product);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteProduct(@PathVariable int id) {
+        productService.deleteProduct(id);
     }
 
 }
