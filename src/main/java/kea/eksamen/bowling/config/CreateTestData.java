@@ -103,7 +103,7 @@ public class CreateTestData implements CommandLineRunner {
         Booking booking3 = new Booking(bookingLocations.get(2), 6, LocalDateTime.of(2024, 5, 16, 18, 0));
         Booking booking4 = new Booking(bookingLocations.get(3), 4, LocalDateTime.of(2024, 5, 16, 17, 0));
         Booking booking5 = new Booking(bookingLocations.get(4), 2, LocalDateTime.of(2024, 5, 17, 17, 0));
-        Booking booking6 = new Booking(bookingLocations.get(5), 6, LocalDateTime.of(2024, 5, 18, 17, 0));
+        Booking booking6 = new Booking(bookingLocations.get(5), 6, LocalDateTime.of(2024, 5, 18, 18, 0));
         Booking booking7 = new Booking(bookingLocations.get(6), 4, LocalDateTime.of(2024, 5, 16, 18, 0));
         Booking booking8 = new Booking(bookingLocations.get(7), 2, LocalDateTime.of(2024, 5, 16, 18, 0));
         Booking booking9 = new Booking(bookingLocations.get(8), 6, LocalDateTime.of(2024, 5, 16, 18, 0));
