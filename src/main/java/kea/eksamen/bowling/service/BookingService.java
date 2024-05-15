@@ -62,7 +62,7 @@ public class BookingService {
         Integer amountOfPeople = booking.amountOfPeople();
         LocalDateTime bookingTime = LocalDateTime.parse(booking.bookingTime());
 
-        Booking newBooking = new Booking(bookingLocation.get(), amountOfPeople, bookingTime);
+        Booking newBooking = new Booking(bookingLocation.get(), amountOfPeople, bookingTime, booking.name());
 
         bookingRepository.save(newBooking);
 
