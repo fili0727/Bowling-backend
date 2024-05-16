@@ -43,9 +43,9 @@ public class CreateTestData implements CommandLineRunner {
     }
 
     private void createProducts() {
-        Product product1 = new Product("https://www.poetzsch-padborg.dk/139-large_default/Coca-Cola-.jpg", "Coca Cola", 19.90);
-        Product product2 = new Product("https://billigfadoel.dk/wp-content/uploads/2018/11/Fanta-Orange-33-cl-daase-24-stk-bestil-hos-Billigfadoel.png",  "Fanta", 19.90);
-        Product product3 = new Product("https://potio.dk/wp-content/uploads/2022/02/tub-gron-oko.jpg", "Tuborg", 29.90);
+        Product product1 = new Product("https://www.poetzsch-padborg.dk/139-large_default/Coca-Cola-.jpg", "Coca Cola", 20);
+        Product product2 = new Product("https://billigfadoel.dk/wp-content/uploads/2018/11/Fanta-Orange-33-cl-daase-24-stk-bestil-hos-Billigfadoel.png",  "Fanta", 20);
+        Product product3 = new Product("https://potio.dk/wp-content/uploads/2022/02/tub-gron-oko.jpg", "Tuborg", 20);
 
         List<Product> products = List.of(product1, product2, product3);
         productRepository.saveAll(products);
