@@ -2,10 +2,7 @@ package kea.eksamen.bowling.controller;
 
 import kea.eksamen.bowling.entity.Employee;
 import kea.eksamen.bowling.service.EmployeeService;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,18 +20,18 @@ public class EmployeeController {
         return employeeService.getAllEmployees();
     }
 
-    @RequestMapping
-    public Employee getEmployee(Long id) {
+    @RequestMapping("/{id}")
+    public Employee getEmployee(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
     }
 
     @PostMapping
-    public Employee addEmployee(Employee employee) {
+    public Employee addEmployee(@RequestBody Employee employee) {
         return employeeService.addEmployee(employee);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteEmployee(Long id) {
+    public void deleteEmployee(@PathVariable Long id) {
         employeeService.deleteEmployee(id);
     }
 
