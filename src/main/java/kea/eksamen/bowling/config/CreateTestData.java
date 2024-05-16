@@ -5,10 +5,7 @@ import kea.eksamen.bowling.entity.Booking;
 import kea.eksamen.bowling.entity.BookingLocation;
 import kea.eksamen.bowling.entity.Product;
 import kea.eksamen.bowling.entity.*;
-import kea.eksamen.bowling.repositories.BookingLocationRepository;
-import kea.eksamen.bowling.repositories.BookingRepository;
-import kea.eksamen.bowling.repositories.OpeningHoursRepository;
-import kea.eksamen.bowling.repositories.ProductRepository;
+import kea.eksamen.bowling.repositories.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -23,15 +20,18 @@ public class CreateTestData implements CommandLineRunner {
     private final BookingRepository bookingRepository;
     private final BookingLocationRepository bookingLocationRepository;
     private final ProductRepository productRepository;
-
+    private final ScheduleRepository scheduleRepository;
     private final OpeningHoursRepository openingHoursRepository;
+    private final EmployeeRepository employeeRepository;
 
     public CreateTestData(BookingRepository bookingRepository, BookingLocationRepository bookingLocationRepository,
-                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository) {
+                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository) {
         this.bookingRepository = bookingRepository;
         this.bookingLocationRepository = bookingLocationRepository;
         this.openingHoursRepository = openingHoursRepository;
         this.productRepository = productRepository;
+        this.scheduleRepository = scheduleRepository;
+        this.employeeRepository = employeeRepository;
     }
 
     @Override
@@ -40,7 +40,59 @@ public class CreateTestData implements CommandLineRunner {
         createBookingLocations();
         createBookings();
         createProducts();
+        createEmployees();
     }
+
+    private void createEmployees() {
+        // Create employees
+        Employee manager1 = new Employee("John Doe", "Manager");
+        Employee manager2 = new Employee("Emily White", "Manager");
+        Employee manager3 = new Employee("Paul Green", "Manager");
+
+        Employee cleaner1 = new Employee("Jane Smith", "Cleaning Staff");
+        Employee cleaner2 = new Employee("Alice Brown", "Cleaning Staff");
+        Employee cleaner3 = new Employee("Mike Davis", "Cleaning Staff");
+
+        Employee cashier1 = new Employee("Bob Johnson", "Cashier");
+        Employee cashier2 = new Employee("Lucy Brown", "Cashier");
+        Employee cashier3 = new Employee("Tom Clark", "Cashier");
+
+        Employee operator1 = new Employee("Alice Green", "Operator");
+        Employee operator2 = new Employee("Chris Brown", "Operator");
+        Employee operator3 = new Employee("Anna Wilson", "Operator");
+
+        List<Employee> employees = List.of(manager1, manager2, manager3,
+                cleaner1, cleaner2, cleaner3,
+                cashier1, cashier2, cashier3,
+                operator1, operator2, operator3);
+
+        employeeRepository.saveAll(employees);
+
+        // Create schedules
+        Schedule schedule1 = new Schedule(manager1, LocalDateTime.of(2024, 5, 16, 10, 0), LocalDateTime.of(2024, 5, 16, 14, 0));
+        Schedule schedule2 = new Schedule(manager2, LocalDateTime.of(2024, 5, 16, 14, 0), LocalDateTime.of(2024, 5, 16, 18, 0));
+        Schedule schedule3 = new Schedule(manager3, LocalDateTime.of(2024, 5, 16, 18, 0), LocalDateTime.of(2024, 5, 16, 22, 0));
+
+        Schedule schedule4 = new Schedule(cleaner1, LocalDateTime.of(2024, 5, 16, 10, 0), LocalDateTime.of(2024, 5, 16, 14, 0));
+        Schedule schedule5 = new Schedule(cleaner2, LocalDateTime.of(2024, 5, 16, 14, 0), LocalDateTime.of(2024, 5, 16, 18, 0));
+        Schedule schedule6 = new Schedule(cleaner3, LocalDateTime.of(2024, 5, 16, 18, 0), LocalDateTime.of(2024, 5, 16, 22, 0));
+
+        Schedule schedule7 = new Schedule(cashier1, LocalDateTime.of(2024, 5, 16, 10, 0), LocalDateTime.of(2024, 5, 16, 14, 0));
+        Schedule schedule8 = new Schedule(cashier2, LocalDateTime.of(2024, 5, 16, 14, 0), LocalDateTime.of(2024, 5, 16, 18, 0));
+        Schedule schedule9 = new Schedule(cashier3, LocalDateTime.of(2024, 5, 16, 18, 0), LocalDateTime.of(2024, 5, 16, 22, 0));
+
+        Schedule schedule10 = new Schedule(operator1, LocalDateTime.of(2024, 5, 16, 10, 0), LocalDateTime.of(2024, 5, 16, 14, 0));
+        Schedule schedule11 = new Schedule(operator2, LocalDateTime.of(2024, 5, 16, 14, 0), LocalDateTime.of(2024, 5, 16, 18, 0));
+        Schedule schedule12 = new Schedule(operator3, LocalDateTime.of(2024, 5, 16, 18, 0), LocalDateTime.of(2024, 5, 16, 22, 0));
+
+        List<Schedule> schedules = List.of(schedule1, schedule2, schedule3,
+                schedule4, schedule5, schedule6,
+                schedule7, schedule8, schedule9,
+                schedule10, schedule11, schedule12);
+
+        scheduleRepository.saveAll(schedules);
+    }
+
 
     private void createProducts() {
         Product product1 = new Product("https://www.poetzsch-padborg.dk/139-large_default/Coca-Cola-.jpg", "Coca Cola", 20);
