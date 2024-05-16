@@ -21,10 +21,12 @@ public class Booking {
 
     private Integer amountOfPeople;
     private LocalDateTime bookingTime;
+    private String name;
 
-    public Booking(BookingLocation bookingLocation, Integer amountOfPeople, LocalDateTime bookingTime) {
+    public Booking(BookingLocation bookingLocation, Integer amountOfPeople, LocalDateTime bookingTime, String name) {
         this.bookingLocation = bookingLocation;
         this.amountOfPeople = amountOfPeople;
         this.bookingTime = bookingTime;
+        this.name = name;
     }
 }
