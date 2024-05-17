@@ -15,12 +15,12 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @RequestMapping
+    @GetMapping
     public List<Employee> getAllEmployees() {
         return employeeService.getAllEmployees();
     }
 
-    @RequestMapping("/{id}")
+    @GetMapping("/{id}")
     public Employee getEmployee(@PathVariable Long id) {
         return employeeService.getEmployeeById(id);
     }
