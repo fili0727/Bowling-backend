@@ -97,4 +97,8 @@ public class BookingService {
         System.out.println(found);
         return found;
     }
+
+    public void deleteBooking(int id) {
+        bookingRepository.deleteById(id);
+    }
 }

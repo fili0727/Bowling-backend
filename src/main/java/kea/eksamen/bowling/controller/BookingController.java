@@ -61,4 +61,10 @@ public class BookingController {
     public ResponseEntity<Booking> updateBooking(@PathVariable int id, @RequestBody BookingEditDto booking) {
         return ResponseEntity.ok(bookingService.updateBooking(id, booking));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deleteBooking(@PathVariable int id) {
+        bookingService.deleteBooking(id);
+        return ResponseEntity.noContent().build();
+    }
 }
