@@ -91,4 +91,10 @@ public class BookingService {
 
         return updatedBooking;
     }
+
+    public Optional<Booking> getBookingById(int id) {
+        Optional<Booking> found =  bookingRepository.findById(id);
+        System.out.println(found);
+        return found;
+    }
 }

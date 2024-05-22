@@ -22,6 +22,11 @@ public class BookingController {
         this.bookingService = bookingService;
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<Booking> getBookingById(@PathVariable int id) {
+        return ResponseEntity.of(bookingService.getBookingById(id));
+    }
+
     @GetMapping
     public List<Booking> getAllBookings() {
         return bookingService.getAllBookings();
