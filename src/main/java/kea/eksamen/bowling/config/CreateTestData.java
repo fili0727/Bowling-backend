@@ -167,15 +167,15 @@ public class CreateTestData implements CommandLineRunner {
     private void createBookings() {
         List<BookingLocation> bookingLocations = bookingLocationRepository.findAll();
 
-        Booking booking1 = new Booking(bookingLocations.get(0), 4, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Test");
-        Booking booking2 = new Booking(bookingLocations.get(1), 2, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Test");
-        Booking booking3 = new Booking(bookingLocations.get(2), 6, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Test");
-        Booking booking4 = new Booking(bookingLocations.get(3), 4, LocalDateTime.of(2024, 5, 25, 18, 0), "Daniel Test");
-        Booking booking5 = new Booking(bookingLocations.get(4), 2, LocalDateTime.of(2024, 5, 26, 16, 0), "Daniel Test");
-        Booking booking6 = new Booking(bookingLocations.get(5), 6, LocalDateTime.of(2024, 5, 27, 17, 0), "Daniel Test");
-        Booking booking7 = new Booking(bookingLocations.get(6), 4, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Test");
-        Booking booking8 = new Booking(bookingLocations.get(7), 2, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Test");
-        Booking booking9 = new Booking(bookingLocations.get(8), 6, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Test");
+        Booking booking1 = new Booking(bookingLocations.get(0), 4, LocalDateTime.of(2024, 5, 16, 18, 0), "Karen Kristensen");
+        Booking booking2 = new Booking(bookingLocations.get(1), 2, LocalDateTime.of(2024, 5, 16, 18, 0), "Michael Jensen");
+        Booking booking3 = new Booking(bookingLocations.get(2), 6, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Larsen");
+        Booking booking4 = new Booking(bookingLocations.get(3), 4, LocalDateTime.of(2024, 5, 25, 18, 0), "Thomas Aslan");
+        Booking booking5 = new Booking(bookingLocations.get(4), 2, LocalDateTime.of(2024, 5, 26, 16, 0), "Morten Karlsen");
+        Booking booking6 = new Booking(bookingLocations.get(5), 6, LocalDateTime.of(2024, 5, 27, 17, 0), "Nikoline Mogensen");
+        Booking booking7 = new Booking(bookingLocations.get(6), 4, LocalDateTime.of(2024, 5, 16, 18, 0), "Sabrina Carpenter");
+        Booking booking8 = new Booking(bookingLocations.get(7), 2, LocalDateTime.of(2024, 5, 16, 18, 0), "Taylor Swift");
+        Booking booking9 = new Booking(bookingLocations.get(8), 6, LocalDateTime.of(2024, 5, 16, 18, 0), "Michael Jordan");
 
         List<Booking> bookings = List.of(booking1, booking2, booking3, booking4, booking5, booking6, booking7, booking8, booking9);
         bookingRepository.saveAll(bookings);
