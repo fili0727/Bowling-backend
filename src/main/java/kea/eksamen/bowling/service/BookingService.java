@@ -1,6 +1,7 @@
 package kea.eksamen.bowling.service;
 
 import kea.eksamen.bowling.dto.BookingDto;
+import kea.eksamen.bowling.dto.BookingEditDto;
 import kea.eksamen.bowling.entity.ActivityType;
 import kea.eksamen.bowling.entity.Booking;
 import kea.eksamen.bowling.entity.BookingLocation;
@@ -67,5 +68,33 @@ public class BookingService {
         bookingRepository.save(newBooking);
 
         return newBooking;
+    }
+
+    public Booking updateBooking(int id, BookingEditDto booking) {
+        Optional<Booking> bookingToUpdate = bookingRepository.findById(id);
+
+        if (bookingToUpdate.isEmpty()) {
+            return null;
+        }
+
+        Optional<BookingLocation> bookingLocation = bookingLocationService.getBookingLocationById(booking.BookingLocationId());
+        Integer amountOfPeople = booking.amountOfPeople();
+        LocalDateTime bookingTime = LocalDateTime.parse(booking.bookingTime());
+
+        Booking updatedBooking = bookingToUpdate.get();
+        updatedBooking.setBookingLocation(bookingLocation.get());
+        updatedBooking.setAmountOfPeople(amountOfPeople);
+        updatedBooking.setBookingTime(bookingTime);
+        updatedBooking.setName(booking.name());
+
+        bookingRepository.save(updatedBooking);
+
+        return updatedBooking;
+    }
+
+    public Optional<Booking> getBookingById(int id) {
+        Optional<Booking> found =  bookingRepository.findById(id);
+        System.out.println(found);
+        return found;
     }
 }
