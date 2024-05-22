@@ -1,6 +1,7 @@
 package kea.eksamen.bowling.controller;
 
 import kea.eksamen.bowling.dto.BookingDto;
+import kea.eksamen.bowling.dto.BookingEditDto;
 import kea.eksamen.bowling.entity.ActivityType;
 import kea.eksamen.bowling.entity.Booking;
 import kea.eksamen.bowling.service.BookingService;
@@ -49,5 +50,10 @@ public class BookingController {
     @PostMapping
     public ResponseEntity<Booking> createBooking(@RequestBody BookingDto booking) {
         return ResponseEntity.ok(bookingService.createBooking(booking));
+    }
+
+    @PatchMapping("/{id}")
+    public ResponseEntity<Booking> updateBooking(@PathVariable int id, @RequestBody BookingEditDto booking) {
+        return ResponseEntity.ok(bookingService.updateBooking(id, booking));
     }
 }
