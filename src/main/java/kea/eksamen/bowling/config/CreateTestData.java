@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -23,15 +24,17 @@ public class CreateTestData implements CommandLineRunner {
     private final ScheduleRepository scheduleRepository;
     private final OpeningHoursRepository openingHoursRepository;
     private final EmployeeRepository employeeRepository;
+    private final MaintenanceItemRepository maintenanceItemRepository;
 
     public CreateTestData(BookingRepository bookingRepository, BookingLocationRepository bookingLocationRepository,
-                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository) {
+                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository, MaintenanceItemRepository maintenanceItemRepository) {
         this.bookingRepository = bookingRepository;
         this.bookingLocationRepository = bookingLocationRepository;
         this.openingHoursRepository = openingHoursRepository;
         this.productRepository = productRepository;
         this.scheduleRepository = scheduleRepository;
         this.employeeRepository = employeeRepository;
+        this.maintenanceItemRepository = maintenanceItemRepository;
     }
 
     @Override
@@ -41,6 +44,22 @@ public class CreateTestData implements CommandLineRunner {
         createBookings();
         createProducts();
         createEmployees();
+        createMaintenanceItems();
+    }
+
+    private void createMaintenanceItems() {
+        MaintenanceItem maintenanceItem1 = new MaintenanceItem(LocalDate.of(2024, 5, 25), bookingLocationRepository.findById(4).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+        MaintenanceItem maintenanceItem2 = new MaintenanceItem(LocalDate.of(2024, 5, 26), bookingLocationRepository.findById(5).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+        MaintenanceItem maintenanceItem3 = new MaintenanceItem(LocalDate.of(2024, 5, 27), bookingLocationRepository.findById(6).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+        MaintenanceItem maintenanceItem4 = new MaintenanceItem(LocalDate.of(2024, 5, 28), bookingLocationRepository.findById(4).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+
+        List<MaintenanceItem> maintenanceItems = List.of(maintenanceItem1, maintenanceItem2, maintenanceItem3, maintenanceItem4);
+
+        maintenanceItemRepository.saveAll(maintenanceItems);
     }
 
     private void createEmployees() {
