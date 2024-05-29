@@ -23,15 +23,17 @@ public class CreateTestData implements CommandLineRunner {
     private final ScheduleRepository scheduleRepository;
     private final OpeningHoursRepository openingHoursRepository;
     private final EmployeeRepository employeeRepository;
+    private final EquipmentRepository equipmentRepository;
 
     public CreateTestData(BookingRepository bookingRepository, BookingLocationRepository bookingLocationRepository,
-                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository) {
+                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository, EquipmentRepository equipmentRepository){
         this.bookingRepository = bookingRepository;
         this.bookingLocationRepository = bookingLocationRepository;
         this.openingHoursRepository = openingHoursRepository;
         this.productRepository = productRepository;
         this.scheduleRepository = scheduleRepository;
         this.employeeRepository = employeeRepository;
+        this.equipmentRepository = equipmentRepository;
     }
 
     @Override
@@ -41,6 +43,20 @@ public class CreateTestData implements CommandLineRunner {
         createBookings();
         createProducts();
         createEmployees();
+        createEquipment();
+    }
+
+    private void createEquipment(){
+        Equipment equipment1 = new Equipment("Bowling Ball", "https://bowlingshopdanmark.dk/wp-content/uploads/2020/09/A4885F08-0B59-41DC-BA3B-D5E2EAA1A42E.png", 19, "https://bowlingshopdanmark.dk/product/melee-jab-blood-red/");
+        Equipment equipment2 = new Equipment("Bowling Shoes","https://bowlingshopdanmark.dk/wp-content/uploads/2022/10/CFB042D3-BD53-4EF1-8F65-DD7876DC916C.png", 47, "https://bowlingshopdanmark.dk/product/3g-belmo-tour-gold/");
+        Equipment equipment3 = new Equipment("Air Hockey Puck","https://www.kuebler-sport.com/media/catalog/product/cache/eefd2557a7033f28ac0a0de7f165949b/T/2/T2156_00-ecommerce.jpeg", 23, "https://legebyen.dk/products/air-hockey-puck-3-stk-original-o-50-mm?gad_source=1&gclid=Cj0KCQjw3tCyBhDBARIsAEY0XNmgKWV165Xgj1oo9sxbMm79TAGLMaL0De6LfqaW8FAWFHUwmbueZd8aAuadEALw_wcB");
+        Equipment equipment4 = new Equipment("Air Hockey Mallet", "https://gamesforfun.com/wp-content/uploads/2018/12/4941-commercial-air-hockey-mallet.jpg", 17,"https://legebyen.dk/products/airhockey-handtag-2-stk-de-luxe-96-mm?pr_prod_strat=jac&pr_rec_id=402562a8c&pr_rec_pid=7709300228317&pr_ref_pid=7709300162781&pr_seq=uniform");
+        Equipment equipment5 = new Equipment("Brooms", "https://productimages.biltema.com/v1/image/imagebyfilename/47-0328_xl_1.jpg", 5,"https://www.biltema.dk/en-dk/home/cleaning/brushes/broom-and-dustpan-2000044232");
+        Equipment equipment6 = new Equipment("Screws (packs)", "https://productimages.biltema.com/v1/image/imagebyfilename/87-0271_xl_1.jpg", 3,"https://www.biltema.dk/en-dk/construction/fixing-elements/wood-screws/screws-outdoor-320-parts-2000034557");
+
+
+        List<Equipment> equipment = List.of(equipment1, equipment2, equipment3, equipment4, equipment5, equipment6);
+        equipmentRepository.saveAll(equipment);
     }
 
     private void createEmployees() {
