@@ -10,6 +10,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
 import java.time.DayOfWeek;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -23,17 +24,24 @@ public class CreateTestData implements CommandLineRunner {
     private final ScheduleRepository scheduleRepository;
     private final OpeningHoursRepository openingHoursRepository;
     private final EmployeeRepository employeeRepository;
+    private final MaintenanceItemRepository maintenanceItemRepository;
     private final EquipmentRepository equipmentRepository;
 
     public CreateTestData(BookingRepository bookingRepository, BookingLocationRepository bookingLocationRepository,
-                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository, EquipmentRepository equipmentRepository){
+                          OpeningHoursRepository openingHoursRepository, ProductRepository productRepository, ScheduleRepository scheduleRepository, EmployeeRepository employeeRepository,
+                          EquipmentRepository equipmentRepository, MaintenanceItemRepository maintenanceItemRepository){
+
         this.bookingRepository = bookingRepository;
         this.bookingLocationRepository = bookingLocationRepository;
         this.openingHoursRepository = openingHoursRepository;
         this.productRepository = productRepository;
         this.scheduleRepository = scheduleRepository;
         this.employeeRepository = employeeRepository;
+
+        this.maintenanceItemRepository = maintenanceItemRepository;
+
         this.equipmentRepository = equipmentRepository;
+
     }
 
     @Override
@@ -44,6 +52,24 @@ public class CreateTestData implements CommandLineRunner {
         createProducts();
         createEmployees();
         createEquipment();
+        createMaintenanceItems();
+    }
+
+    private void createMaintenanceItems() {
+        MaintenanceItem maintenanceItem1 = new MaintenanceItem(LocalDate.of(2024, 5, 25), bookingLocationRepository.findById(4).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+        MaintenanceItem maintenanceItem2 = new MaintenanceItem(LocalDate.of(2024, 5, 26), bookingLocationRepository.findById(5).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+        MaintenanceItem maintenanceItem3 = new MaintenanceItem(LocalDate.of(2024, 5, 27), bookingLocationRepository.findById(6).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+        MaintenanceItem maintenanceItem4 = new MaintenanceItem(LocalDate.of(2024, 5, 28), bookingLocationRepository.findById(4).get(),
+                LocalTime.of(22, 0), LocalTime.of(23, 0));
+
+        List<MaintenanceItem> maintenanceItems = List.of(maintenanceItem1, maintenanceItem2, maintenanceItem3, maintenanceItem4);
+
+        maintenanceItemRepository.saveAll(maintenanceItems);
+
+
     }
 
     private void createEquipment(){
@@ -57,6 +83,7 @@ public class CreateTestData implements CommandLineRunner {
 
         List<Equipment> equipment = List.of(equipment1, equipment2, equipment3, equipment4, equipment5, equipment6);
         equipmentRepository.saveAll(equipment);
+
     }
 
     private void createEmployees() {
@@ -134,11 +161,11 @@ public class CreateTestData implements CommandLineRunner {
                 diningFriday, diningSaturday, diningSunday);
         openingHoursRepository.saveAll(openingHoursDining);
 
-        OpeningHours bowlingMonday = new OpeningHours( DayOfWeek.MONDAY, LocalTime.of(17, 0), LocalTime.of(21, 0), ActivityType.BOWLING);
-        OpeningHours bowlingTuesday = new OpeningHours( DayOfWeek.TUESDAY, LocalTime.of(17, 0), LocalTime.of(21, 0), ActivityType.BOWLING);
-        OpeningHours bowlingWednesday = new OpeningHours( DayOfWeek.WEDNESDAY, LocalTime.of(17, 0), LocalTime.of(21, 0), ActivityType.BOWLING);
-        OpeningHours bowlingThursday = new OpeningHours( DayOfWeek.THURSDAY, LocalTime.of(17, 0), LocalTime.of(21, 0), ActivityType.BOWLING);
-        OpeningHours bowlingFriday = new OpeningHours( DayOfWeek.FRIDAY, LocalTime.of(17, 0), LocalTime.of(23, 0), ActivityType.BOWLING);
+        OpeningHours bowlingMonday = new OpeningHours( DayOfWeek.MONDAY, LocalTime.of(10, 0), LocalTime.of(22, 0), ActivityType.BOWLING);
+        OpeningHours bowlingTuesday = new OpeningHours( DayOfWeek.TUESDAY, LocalTime.of(10, 0), LocalTime.of(22, 0), ActivityType.BOWLING);
+        OpeningHours bowlingWednesday = new OpeningHours( DayOfWeek.WEDNESDAY, LocalTime.of(10, 0), LocalTime.of(22, 0), ActivityType.BOWLING);
+        OpeningHours bowlingThursday = new OpeningHours( DayOfWeek.THURSDAY, LocalTime.of(10, 0), LocalTime.of(22, 0), ActivityType.BOWLING);
+        OpeningHours bowlingFriday = new OpeningHours( DayOfWeek.FRIDAY, LocalTime.of(10, 0), LocalTime.of(22, 0), ActivityType.BOWLING);
         OpeningHours bowlingSaturday = new OpeningHours( DayOfWeek.SATURDAY, LocalTime.of(12, 0), LocalTime.of(23, 0), ActivityType.BOWLING);
         OpeningHours bowlingSunday = new OpeningHours( DayOfWeek.SUNDAY, LocalTime.of(12, 0), LocalTime.of(21, 0), ActivityType.BOWLING);
 
@@ -176,24 +203,62 @@ public class CreateTestData implements CommandLineRunner {
         BookingLocation table2 = new BookingLocation(ActivityType.DINING,"Table 2", 2);
         BookingLocation table3 = new BookingLocation(ActivityType.DINING,"Table 3", 6);
 
-        List<BookingLocation> bookingLocations = List.of(course1, course2, course3, station1, station2, station3, table1, table2, table3);
+        BookingLocation course4 = new BookingLocation(ActivityType.BOWLING,"Lane 4", 4);
+        BookingLocation station4 = new BookingLocation(ActivityType.AIRHOCKEY,"Station 4", 4);
+        BookingLocation station5 = new BookingLocation(ActivityType.AIRHOCKEY,"Station 5", 4);
+        BookingLocation station6 = new BookingLocation(ActivityType.AIRHOCKEY,"Station 6", 4);
+        BookingLocation course5 = new BookingLocation(ActivityType.BOWLING,"Lane 5", 4);
+        BookingLocation course6 = new BookingLocation(ActivityType.BOWLING,"Lane 6", 4);
+        BookingLocation course7 = new BookingLocation(ActivityType.BOWLING,"Lane 7", 4);
+        BookingLocation course8 = new BookingLocation(ActivityType.BOWLING,"Lane 8", 4);
+        BookingLocation course9 = new BookingLocation(ActivityType.BOWLING,"Lane 9", 4);
+        BookingLocation course10 = new BookingLocation(ActivityType.BOWLING,"Lane 10", 4);
+
+        BookingLocation table4 = new BookingLocation(ActivityType.DINING,"Table 4", 4);
+        BookingLocation table5 = new BookingLocation(ActivityType.DINING,"Table 5", 4);
+        BookingLocation table6 = new BookingLocation(ActivityType.DINING,"Table 6", 4);
+        BookingLocation table7 = new BookingLocation(ActivityType.DINING,"Table 7", 4);
+        BookingLocation table8 = new BookingLocation(ActivityType.DINING,"Table 8", 4);
+        BookingLocation table9 = new BookingLocation(ActivityType.DINING,"Table 9", 4);
+        BookingLocation table10 = new BookingLocation(ActivityType.DINING,"Table 10", 4);
+
+
+        List<BookingLocation> bookingLocations = List.of(course1, course2, course3, station1, station2, station3,
+                table1, table2, table3, course4, station4, station5, station6, course5, course6, course7, course8, course9, course10,
+                table4, table5, table6, table7, table8, table9, table10);
         bookingLocationRepository.saveAll(bookingLocations);
     }
 
     private void createBookings() {
         List<BookingLocation> bookingLocations = bookingLocationRepository.findAll();
 
-        Booking booking1 = new Booking(bookingLocations.get(0), 4, LocalDateTime.of(2024, 5, 16, 18, 0), "Karen Kristensen");
-        Booking booking2 = new Booking(bookingLocations.get(1), 2, LocalDateTime.of(2024, 5, 16, 18, 0), "Michael Jensen");
-        Booking booking3 = new Booking(bookingLocations.get(2), 6, LocalDateTime.of(2024, 5, 16, 18, 0), "Daniel Larsen");
-        Booking booking4 = new Booking(bookingLocations.get(3), 4, LocalDateTime.of(2024, 5, 25, 18, 0), "Thomas Aslan");
-        Booking booking5 = new Booking(bookingLocations.get(4), 2, LocalDateTime.of(2024, 5, 26, 16, 0), "Morten Karlsen");
-        Booking booking6 = new Booking(bookingLocations.get(5), 6, LocalDateTime.of(2024, 5, 27, 17, 0), "Nikoline Mogensen");
-        Booking booking7 = new Booking(bookingLocations.get(6), 4, LocalDateTime.of(2024, 5, 16, 18, 0), "Sabrina Carpenter");
-        Booking booking8 = new Booking(bookingLocations.get(7), 2, LocalDateTime.of(2024, 5, 16, 18, 0), "Taylor Swift");
-        Booking booking9 = new Booking(bookingLocations.get(8), 6, LocalDateTime.of(2024, 5, 16, 18, 0), "Michael Jordan");
-
-        List<Booking> bookings = List.of(booking1, booking2, booking3, booking4, booking5, booking6, booking7, booking8, booking9);
+        Booking booking1 = new Booking(bookingLocations.get(0), 4, LocalDateTime.of(2024, 5, 28, 18, 0), "Karen Kristensen");
+        Booking booking2 = new Booking(bookingLocations.get(1), 2, LocalDateTime.of(2024, 5, 28, 18, 0), "Michael Jensen");
+        Booking booking3 = new Booking(bookingLocations.get(2), 6, LocalDateTime.of(2024, 5, 29, 18, 0), "Daniel Larsen");
+        Booking booking4 = new Booking(bookingLocations.get(3), 4, LocalDateTime.of(2024, 5, 29, 18, 0), "Thomas Aslan");
+        Booking booking5 = new Booking(bookingLocations.get(4), 2, LocalDateTime.of(2024, 5, 30, 16, 0), "Morten Karlsen");
+        Booking booking6 = new Booking(bookingLocations.get(5), 6, LocalDateTime.of(2024, 5, 30, 17, 0), "Nikoline Mogensen");
+        Booking booking7 = new Booking(bookingLocations.get(6), 4, LocalDateTime.of(2024, 5, 31, 18, 0), "Sabrina Carpenter");
+        Booking booking8 = new Booking(bookingLocations.get(7), 2, LocalDateTime.of(2024, 5, 31, 18, 0), "Taylor Swift");
+        Booking booking9 = new Booking(bookingLocations.get(8), 6, LocalDateTime.of(2024, 5, 27, 18, 0), "Michael Jordan");
+        Booking booking10 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 27, 10, 0), "Bowling Club");
+        Booking booking11 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 27, 12, 0), "Bowling Club");
+        Booking booking12 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 27, 14, 0), "Bowling Club");
+        Booking booking13 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 28, 10, 0), "Bowling Club");
+        Booking booking14 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 28, 12, 0), "Bowling Club");
+        Booking booking15 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 28, 14, 0), "Bowling Club");
+        Booking booking16 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 29, 10, 0), "Bowling Club");
+        Booking booking17 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 29, 12, 0), "Bowling Club");
+        Booking booking18 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 29, 14, 0), "Bowling Club");
+        Booking booking19 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 30, 10, 0), "Bowling Club");
+        Booking booking20 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 30, 12, 0), "Bowling Club");
+        Booking booking21 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 30, 14, 0), "Bowling Club");
+        Booking booking22 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 31, 10, 0), "Bowling Club");
+        Booking booking23 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 31, 12, 0), "Bowling Club");
+        Booking booking24 = new Booking(bookingLocations.get(9), 4, LocalDateTime.of(2024, 5, 31, 14, 0), "Bowling Club");
+        List<Booking> bookings = List.of(booking1, booking2, booking3, booking4, booking5, booking6, booking7, booking8,
+                booking9, booking10, booking11, booking12, booking13, booking14, booking15, booking16, booking17, booking18,
+                booking19, booking20, booking21, booking22, booking23, booking24);
         bookingRepository.saveAll(bookings);
     }
 }
